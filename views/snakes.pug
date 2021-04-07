@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  h1= title
+  - let snakes=[{snakename:"cobras",habitat:"Lowland",classification:"Cyprinidae",price:300},{snakename:"vipers",habitat:"River Channels",classification:"Pangasiidae",price:500},{snakename:"anakonda",habitat:"Rocky Substrates",classification:"Cichlidae",price:1000}]
+  div(class="container-fluid mt-3")
+  div(class="row")
+    each snake,index in snakes
+        div(class="col-sm-4 bg-info m-1 p-3" style=("font-weight:bolder")  onclick=`buy(${index})`) #{snake.snakename} - #{snake.habitat} - #{snake.classification} - #{snake.price}
+  script.
+     
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }
+  
+    
+
+
+
