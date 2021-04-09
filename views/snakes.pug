@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let snakes=[{snakename:"cobras",habitat:"Lowland",classification:"Cyprinidae",price:300},{snakename:"vipers",habitat:"River Channels",classification:"Pangasiidae",price:500},{snakename:"anakonda",habitat:"Rocky Substrates",classification:"Cichlidae",price:1000}]
+  - let snakes=results
   div(class="container-fluid mt-3")
   div(class="row")
     each snake,index in snakes

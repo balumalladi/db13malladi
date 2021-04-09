@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
-const costumeSchema = mongoose.Schema({
+const snakeSchema = mongoose.Schema({
 snakename: String,
 habitat: String,
 classification: String,
 price: Number
 })
-module.exports = mongoose.model("snakes", costumeSchema)
+module.exports = mongoose.model("snakes", snakeSchema)
