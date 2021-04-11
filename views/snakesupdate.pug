@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1= title
+
+  - let snakesid = toShow._id
+  - let snakename = toShow.snakename
+  - let habitat = toShow.cost
+  - let classification = toShow.size
+  - let price = toShow.price
+  
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{snakesid}
+  - let actionid = "/resource/resource/snakes/" + snakesid
+  form(id='snakesForm', action= actionid, method="PUT")
+    div.form-group
+        label.snakesAttr(for='snakestype') snake name
+        input#snakename(type='text', name='snakename', value= snakename )
+    div.form-group
+        label.snakesAttr(for='habitat') habitat
+        input#habitat(type='text', name='habitat', value= habitat )
+    div.form-group
+        label.snakesAttr(for='classification') classification
+        input#classification(type='text', name='classification', value= classification )
+    div.form-group
+        label.snakesAttr(for='price') price
+        input#price(type='number', name='price', value= price )
+    input(type="submit")
+
+  script.
+    document.forms['snakesForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });

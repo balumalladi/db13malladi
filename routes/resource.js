@@ -21,6 +21,9 @@ router.get('/resource/snakes', snakes_controller.snakes_list);
 router.get('/detail', snakes_controller.snakes_view_one_Page);
 /* GET create costume page */
 router.get('/create', snakes_controller.snakes_create_Page);
+/* GET create update page */
+router.get('/update', snakes_controller.snakes_update_Page);
+
 
 
 
