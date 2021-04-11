@@ -19,5 +19,9 @@ router.get('/resource/snakes/:id', snakes_controller.snakes_detail);
 router.get('/resource/snakes', snakes_controller.snakes_list);
 /* GET detail costume page */
 router.get('/detail', snakes_controller.snakes_view_one_Page);
+/* GET create costume page */
+router.get('/create', snakes_controller.snakes_create_Page);
+
+
 
 module.exports = router;
