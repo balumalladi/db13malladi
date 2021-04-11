@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  h1= title
+
+  - let snakeid = toShow._id
+  - let snakename = toShow.snakename
+  - let habitat = toShow.habitat
+  - let classification = toShow.classification
+  - let price = toShow.price
+  div
+    div.row
+      div(class='snakesAttr mr-3') snakes ID is:
+      div #{snakeid}
+    div.row
+      div(class='snakesAttr mr-3') snakes name is:
+      div #{snakename}
+    div.row
+      div(class='snakesAttr mr-3') snakes habitat is:
+      div #{habitat}
+    div.row
+      div(class='snakesAttr mr-3') classification is:
+      div #{classification}
+    div.row
+      div(class='snakesAttr mr-3') price is:
+      div #{price}
+      input(type="SUBMIT")
+
+      script.
+    document.forms['snakesForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'DELETE',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Delete succeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    });
+

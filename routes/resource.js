@@ -23,6 +23,8 @@ router.get('/detail', snakes_controller.snakes_view_one_Page);
 router.get('/create', snakes_controller.snakes_create_Page);
 /* GET create update page */
 router.get('/update', snakes_controller.snakes_update_Page);
+/* GET create costume page */
+router.get('/delete', snakes_controller.snakes_delete_Page);
 
 
 
