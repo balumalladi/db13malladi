@@ -26,7 +26,7 @@ exports.snakes_create_post = async function(req, res) {
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"costumetype":"goat", "cost":12, "size":"large"}
+    // {"snakestype":"goat", "cost":12, "size":"large"}
     document.color = req.body.color;
     document.weight = req.body.weight;
     document.vitamins = req.body.vitamins;
@@ -74,11 +74,25 @@ exports.snakes_update_put = async function(req, res) {
 // Handle a show all view
 exports.snakes_view_all_Page = async function(req, res) {
     try{
-    thesnakes = await Costume.find();
+    thesnakes = await snakes.find();
     res.render('snakes', { title: 'snakes Search Results', results: thesnakes });
     }
     catch(err){
     res.error(500,`{"error": ${err}}`);
     }
 };
+// Handle a show one view with id specified by query
+exports.snakes_view_one_Page = async function(req, res) {
+    console.log("single view for id "  + req.query.id)
+    try{
+        result = await snakes.findById( req.query.id)
+        res.render('snakesdetail', 
+{ title: 'snakes Detail', toShow: result });
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
 

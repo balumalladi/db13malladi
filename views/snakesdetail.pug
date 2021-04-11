@@ -1,0 +1,26 @@
+extends layout
+
+block content
+  h1= title
+
+  - let snakeid = toShow._id
+  - let snakename = toShow.snakename
+  - let habitat = toShow.habitat
+  - let classification = toShow.classification
+  - let price = toShow.price
+  div
+    div.row
+      div(class='snakesAttr mr-3') snakes ID is:
+      div #{snakeid}
+    div.row
+      div(class='snakesAttr mr-3') snakes name is:
+      div #{snakename}
+    div.row
+      div(class='snakesAttr mr-3') snakes habitat is:
+      div #{habitat}
+    div.row
+      div(class='snakesAttr mr-3') classification is:
+      div #{classification}
+    div.row
+      div(class='snakesAttr mr-3') price is:
+      div #{price}

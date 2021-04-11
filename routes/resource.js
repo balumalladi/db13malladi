@@ -17,4 +17,7 @@ router.put('/resource/snakes/:id', snakes_controller.snakes_update_put);
 router.get('/resource/snakes/:id', snakes_controller.snakes_detail);
 // GET request for list of all Costume items.
 router.get('/resource/snakes', snakes_controller.snakes_list);
+/* GET detail costume page */
+router.get('/detail', snakes_controller.snakes_view_one_Page);
+
 module.exports = router;
