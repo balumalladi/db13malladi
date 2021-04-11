@@ -20,13 +20,38 @@ exports.snakes_detail = async function(req, res) {
     }
 };
 // Handle snakes create on POST.
-exports.snakes_create_post = function(req, res) {
-res.send('NOT IMPLEMENTED: snakes create POST');
-};
+exports.snakes_create_post = async function(req, res) {
+    console.log(req.body)
+    let document = new snakes();
+    // We are looking for a body, since POST does not have query parameters.
+    // Even though bodies can be in many different formats, we will be picky
+    // and require that it be a json object
+    // {"costumetype":"goat", "cost":12, "size":"large"}
+    document.color = req.body.color;
+    document.weight = req.body.weight;
+    document.vitamins = req.body.vitamins;
+    try{
+    let result = await document.save();
+    res.send(result);
+    }
+    catch(err){
+    res.error(500,`{"error": ${err}}`);
+    }
+    };
 // Handle snakes delete form on DELETE.
-exports.snakes_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: snakes delete DELETE ' + req.params.id);
+exports.snakes_delete = async function(req, res) {
+    console.log("delete "  + req.params.id)
+    try {
+        result = await snakes.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
+
+
 // Handle snakes update form on PUT.
 exports.snakes_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
