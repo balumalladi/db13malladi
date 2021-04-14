@@ -1,45 +1,62 @@
 extends layout
+
 block content
   h1= title
-  - let snakesid = toShow._id
-  - let snakename = toShow.snakename
-  - let habitat = toShow.habitat
-  - let classification = toShow.classification
-  - let price = toShow.price
-  - let actionid = "/resource/resource/snakes/" + snakesid
-  form(id='snakesForm', action=actionid, method="DELETE")
- 
+
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let snakesid = toShow._id
+    - let snakename = toShow.snakename
+    - let habitat = toShow.habitat
+    - let classification = toShow.classification
+    - let price = toShow.price
+    - let actionid = "/resource/resource/snakes/" + snakesid
+    script let actionid = "#{actionid}"
     div
-        div.row
-            div(class='snakesAttr mr-3') snakes ID is:
-            div #{snakesid}
-        div.row
-            div(class='snakesAttr mr-3') snake name is:
-            div #{snakename}
-        div.row
-            div(class='snakesAttr mr-3') habitat is:
-            div #{habitat}
-        div.row
-            div(class='snakesAttr mr-3') classification is:
-            div #{classification}
-        div.row
-            div(class='snakesAttr mr-3') price is:
-            div #{price}
-        input(type="submit")
+      div.row
+        div(class='snakesAttr mr-3') snakes ID is:
+        div #{snakesid}
+      div.row
+        div(class='snakesAttr mr-3') snake name is:
+        div #{snakename}
+      div.row
+        div(class='snakesAttr mr-3') habitat:
+        div #{habitat}
+      div.row
+        div(class='snakesAttr mr-3') classification:
+        div #{classification}
+      div.row
+        div(class='snakesAttr mr-3') snakes Cost is:
+        div #{price}
+
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
   script.
-    document.forms['snakesForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show user that form is being submitted
-      fetch(event.target.action, {
-          method: 'DELETE',
-          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+    function cancel() {
+      // Go back to the home page for the snakes collection
+      window.location.href='/snakes'
+    }
+  script.
+    function deleteOnid() {
+      console.log("starting delete")
+      // delete first
+      fetch(actionid, {
+        method: 'DELETE'      // Don't need a body for the delete
       }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
+        return resp.json(); // or resp.text() or whatever the server sends
       }).then((body) => {
-          alert("Deleted successfully")
-          // TODO handle body
+        alert("Delete succeded")
+        window.location.href='/snakes'
+        // TODO handle body
       }).catch((error) => {
-          // TODO handle error
-          alert("Save failed " + error )
-      });    
-    });
+        // TODO handle error
+        alert("Delete failed " + error )
+      });
+    }
+
+      
+  
+
+

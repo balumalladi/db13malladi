@@ -6,7 +6,26 @@ body {
 a {
   color: #00B7FF;
 }
-.snakesAttr {
-  background-color: aquamarine;
-  width: 120px;
+
+
+h1{
+  color: #125615;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-decoration: underline;
+}
+
+.snakesAttr{
+  margin-right: 2px;
+  margin-bottom: 0;
+  padding: 10px;
+  justify-content:center;
+  font-weight: bold;
+  border-bottom: 2px solid red;
+  border-left: 2px solid red;
+  background-color: azure;
+  border-radius: 1px;
+}
+#button{
+   color: #125615;
 }
