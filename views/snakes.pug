@@ -3,18 +3,21 @@ extends layout
 block content
   h1= title
   - let snakes=results
-  div(class="container-fluid mt-3")
-  div(class="row")
-    each snake,index in snakes
-        div(class="col-sm-4 bg-info m-1 p-3" style=("font-weight:bolder")  onclick=`buy(${index})`) #{snake.snakename} - #{snake.habitat} - #{snake.classification} - #{snake.price}
+
+  div(class="container-fluid")
+    div(class="row m-1")
+    each snake in snakes 
+      - let destination = `dispatch(\"/snakes/update?id=${item._id}\")`
+      div(class="row-sm-2", class="m-1") snakes #{snake.snakename}(#{snake.habitat}) is #{snake.classification}#{snake.price}
+      button.btn( class="btn-primary ml-1", onclick= destination) Update
+
   script.
-     
-      function buy(itemNo)
-      {
-        alert(`You purchased Item ${itemNo+1}`)
-      }
-  
+    function dispatch(path){
+      window.location.href=path
+    }
     
+
+
 
 
 
