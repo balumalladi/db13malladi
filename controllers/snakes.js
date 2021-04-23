@@ -75,6 +75,7 @@ exports.snakes_update_put = async function(req, res) {
 exports.snakes_view_all_Page = async function(req, res) {
     try{
     thesnakes = await snakes.find();
+    console.log(thesnakes)
     res.render('snakes', { title: 'snakes Search Results', results: thesnakes });
     }
     catch(err){

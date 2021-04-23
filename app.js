@@ -20,7 +20,7 @@ passport.use(new LocalStrategy(
   }))
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var snakes = require('./routes/snakes');
+var snakes1 = require('./routes/snakes');
 var stars = require('./routes/stars');
 var slot = require('./routes/slot');
 var snakes = require('./models/snakes')
@@ -52,7 +52,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/snakes', snakes);
+app.use('/snakes', snakes1);
 app.use('/stars', stars);
 app.use('/slot', slot);
 app.use('/resource', resourceRouter);
@@ -83,7 +83,7 @@ app.use(function(err, req, res, next) {
 // We can seed the collection if needed on server start
 async function recreateDB(){
   // Delete everything
-  // await Costume.deleteMany();
+  await snakes.deleteMany();
   let instance1 = new snakes({snakename:"cobras",habitat:"Lowland",classification:"Cyprinidae",price:300});
   instance1.save( function(err,doc) {
   if(err) return console.error(err);

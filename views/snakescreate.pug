@@ -28,7 +28,13 @@ block content
       }).then((resp) => {
         return resp.json(); // or resp.text() or whatever the server sends
       }).then((body) => {
-        alert("Save succeded")
+        console.log(body)
+        if(body.errors){
+          alert("Save failed")
+        }
+        else{
+          alert("save succeded")
+        }
         // TODO handle body
       }).catch((error) => {
         // TODO handle error

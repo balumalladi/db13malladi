@@ -5,11 +5,17 @@ block content
   - let snakes=results
 
   div(class="container-fluid")
+   - let createdestination = `dispatch(\"/snakes/create")`
+    button.btn( class="btn-primary ml-1", onclick= createdestination) Create
     div(class="row m-1")
-    each snake in snakes 
-      - let destination = `dispatch(\"/snakes/update?id=${item._id}\")`
-      div(class="row-sm-2", class="m-1") snakes #{snake.snakename}(#{snake.habitat}) is #{snake.classification}#{snake.price}
+     each snake in snakes  
+      - let destination = `dispatch(\"/snakes/update?id=${snake._id}\")`
+      - let detaildestination = `dispatch(\"/snakes/detail?id=${snake._id}\")`
+      - let deletedestination = `dispatch(\"/snakes/delete?id=${snake._id}\")`
+      div(class="row-sm-2", class="m-1") snakes #{snake.snakename}(#{snake.habitat}) is #{snake.classification} #{snake.price}
       button.btn( class="btn-primary ml-1", onclick= destination) Update
+      button.btn( class="btn-primary ml-1", onclick= detaildestination) Detail
+      button.btn( class="btn-primary ml-1", onclick= deletedestination) Delete
 
   script.
     function dispatch(path){
